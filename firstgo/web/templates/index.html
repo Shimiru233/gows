@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Title }}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; margin: 2rem; }
+        header { margin-bottom: 1.5rem; }
+        ul { margin-top: 0.5rem; }
+        .empty { color: #777; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Message }}</p>
+        {{ if .User }}
+            <p>Welcome, <strong>{{ .User }}</strong>!</p>
+        {{ else }}
+            <p class="empty">You are not signed in.</p>
+        {{ end }}
+    </header>
+
+    <section>
+        <h2>Items</h2>
+        {{ if .Items }}
+            <ul>
+                {{ range $idx, $it := .Items }}
+                    <li>{{ $idx }}: {{ $it }}</li>
+                {{ end }}
+            </ul>
+        {{ else }}
+            <p class="empty">No items available.</p>
+        {{ end }}
+    </section>
+
+    <footer>
+        <p>&copy; {{ .Year }}</p>
+    </footer>
+</body>
+</html>
